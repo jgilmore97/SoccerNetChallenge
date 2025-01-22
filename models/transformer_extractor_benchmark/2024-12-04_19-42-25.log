@@ -1,0 +1,38 @@
+2024-12-04 19:42:25,784 [MainThread  ] [INFO ]  Starting main function
+2024-12-04 19:42:25,785 [MainThread  ] [INFO ]  Parameters:
+2024-12-04 19:42:25,785 [MainThread  ] [INFO ]   SoccerNet_path : /content/drive/MyDrive/soccer_net/CALF/src/spotting_ball_2023/
+2024-12-04 19:42:25,786 [MainThread  ] [INFO ]         features : ResNET_TF2_PCA512.npy
+2024-12-04 19:42:25,786 [MainThread  ] [INFO ]       max_epochs : 500
+2024-12-04 19:42:25,786 [MainThread  ] [INFO ]     load_weights : None
+2024-12-04 19:42:25,786 [MainThread  ] [INFO ]       model_name : bf_tran_rerun
+2024-12-04 19:42:25,786 [MainThread  ] [INFO ]        test_only : False
+2024-12-04 19:42:25,786 [MainThread  ] [INFO ]        challenge : False
+2024-12-04 19:42:25,786 [MainThread  ] [INFO ]         K_params : None
+2024-12-04 19:42:25,786 [MainThread  ] [INFO ]     num_features : 512
+2024-12-04 19:42:25,786 [MainThread  ] [INFO ]  chunks_per_epoch : 18000
+2024-12-04 19:42:25,786 [MainThread  ] [INFO ]  evaluation_frequency : 20
+2024-12-04 19:42:25,786 [MainThread  ] [INFO ]      dim_capsule : 16
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]        framerate : 2
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]       chunk_size : 120
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]  receptive_field : 40
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]     lambda_coord : 5.0
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]     lambda_noobj : 0.5
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]  loss_weight_segmentation : 0.000367
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]  loss_weight_detection : 1.0
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]       batch_size : 32
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]               LR : 0.001
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]         patience : 25
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]              GPU : -1
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]   max_num_worker : 4
+2024-12-04 19:42:25,787 [MainThread  ] [INFO ]         loglevel : INFO
+2024-12-04 19:42:25,788 [MainThread  ] [INFO ]            model : trans
+2024-12-04 19:42:25,788 [MainThread  ] [INFO ]           subset : None
+2024-12-04 19:42:25,788 [MainThread  ] [INFO ]        num_heads : 4
+2024-12-04 19:42:25,788 [MainThread  ] [INFO ]  transformer_layers : 3
+2024-12-04 19:42:25,788 [MainThread  ] [INFO ]          d_model : 64
+2024-12-04 19:42:25,800 [MainThread  ] [INFO ]  Checking/Download features and labels locally
+2024-12-04 19:42:26,925 [MainThread  ] [INFO ]  Pre-compute clips
+2024-12-04 19:46:45,501 [MainThread  ] [INFO ]  Checking/Download features and labels locally
+2024-12-04 19:46:45,848 [MainThread  ] [INFO ]  Pre-compute clips
+2024-12-04 19:48:11,438 [MainThread  ] [INFO ]  Checking/Download features and labels locally
+2024-12-04 19:48:11,811 [MainThread  ] [INFO ]  Checking/Download features and labels locally

@@ -1,0 +1,634 @@
+2024-11-26 20:50:41,889 [MainThread  ] [INFO ]  Starting main function
+2024-11-26 20:50:41,890 [MainThread  ] [INFO ]  Parameters:
+2024-11-26 20:50:41,891 [MainThread  ] [INFO ]   SoccerNet_path : /content/drive/MyDrive/soccer_net/CALF/src/spotting_ball_2023/
+2024-11-26 20:50:41,892 [MainThread  ] [INFO ]         features : ResNET_TF2_PCA512.npy
+2024-11-26 20:50:41,892 [MainThread  ] [INFO ]       max_epochs : 500
+2024-11-26 20:50:41,892 [MainThread  ] [INFO ]     load_weights : None
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]       model_name : seb_red4_res_grpcnv_do_bn_wd_full
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]        test_only : False
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]        challenge : False
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]         K_params : None
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]     num_features : 512
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]  chunks_per_epoch : 18000
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]  evaluation_frequency : 20
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]      dim_capsule : 16
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]        framerate : 2
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]       chunk_size : 120
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]  receptive_field : 40
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]     lambda_coord : 5.0
+2024-11-26 20:50:41,893 [MainThread  ] [INFO ]     lambda_noobj : 0.5
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]  loss_weight_segmentation : 0.000367
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]  loss_weight_detection : 1.0
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]       batch_size : 32
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]               LR : 0.001
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]         patience : 25
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]              GPU : -1
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]   max_num_worker : 4
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]         loglevel : INFO
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]            model : seb
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]           subset : None
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]        num_heads : 4
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]  transformer_layers : 3
+2024-11-26 20:50:41,894 [MainThread  ] [INFO ]          d_model : 64
+2024-11-26 20:50:41,907 [MainThread  ] [INFO ]  Checking/Download features and labels locally
+2024-11-26 20:50:42,921 [MainThread  ] [INFO ]  Pre-compute clips
+2024-11-26 20:54:55,737 [MainThread  ] [INFO ]  Checking/Download features and labels locally
+2024-11-26 20:54:56,078 [MainThread  ] [INFO ]  Pre-compute clips
+2024-11-26 20:56:19,775 [MainThread  ] [INFO ]  Checking/Download features and labels locally
+2024-11-26 20:56:20,102 [MainThread  ] [INFO ]  Checking/Download features and labels locally
+2024-11-26 20:56:20,438 [MainThread  ] [INFO ]  ContextAwareModelSeb(
+  (conv_1): Conv2d(1, 128, kernel_size=(1, 512), stride=(1, 1))
+  (conv_2): Conv2d(128, 32, kernel_size=(1, 1), stride=(1, 1))
+  (pad_p_1): ZeroPad2d((0, 0, 5, 6))
+  (pad_p_2): ZeroPad2d((0, 0, 13, 13))
+  (pad_p_3): ZeroPad2d((0, 0, 19, 20))
+  (pad_p_4): ZeroPad2d((0, 0, 39, 40))
+  (conv_p_1): Conv2d(32, 8, kernel_size=(12, 1), stride=(1, 1), groups=8)
+  (conv_p_2): Conv2d(32, 16, kernel_size=(27, 1), stride=(1, 1), groups=16)
+  (conv_p_3): Conv2d(32, 32, kernel_size=(40, 1), stride=(1, 1), groups=32)
+  (conv_p_4): Conv2d(32, 64, kernel_size=(80, 1), stride=(1, 1), groups=32)
+  (se_p_1): SEBlock(
+    (global_avg_pool): AdaptiveAvgPool2d(output_size=1)
+    (fc1): Linear(in_features=8, out_features=2, bias=True)
+    (fc2): Linear(in_features=2, out_features=8, bias=True)
+    (sigmoid): Sigmoid()
+  )
+  (se_p_2): SEBlock(
+    (global_avg_pool): AdaptiveAvgPool2d(output_size=1)
+    (fc1): Linear(in_features=16, out_features=4, bias=True)
+    (fc2): Linear(in_features=4, out_features=16, bias=True)
+    (sigmoid): Sigmoid()
+  )
+  (se_p_3): SEBlock(
+    (global_avg_pool): AdaptiveAvgPool2d(output_size=1)
+    (fc1): Linear(in_features=32, out_features=8, bias=True)
+    (fc2): Linear(in_features=8, out_features=32, bias=True)
+    (sigmoid): Sigmoid()
+  )
+  (se_p_4): SEBlock(
+    (global_avg_pool): AdaptiveAvgPool2d(output_size=1)
+    (fc1): Linear(in_features=64, out_features=16, bias=True)
+    (fc2): Linear(in_features=16, out_features=64, bias=True)
+    (sigmoid): Sigmoid()
+  )
+  (dropout_seg): Dropout(p=0.3, inplace=False)
+  (dropout_spot): Dropout(p=0.3, inplace=False)
+  (conv_seg_bn): BatchNorm2d(272, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (pad_seg): ZeroPad2d((0, 0, 1, 1))
+  (conv_seg): Conv2d(152, 272, kernel_size=(3, 1), stride=(1, 1))
+  (batch_seg): BatchNorm2d(240, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+  (max_pool_spot): MaxPool2d(kernel_size=(3, 1), stride=(2, 1), padding=0, dilation=1, ceil_mode=False)
+  (pad_spot_1): ZeroPad2d((0, 0, 1, 1))
+  (conv_spot_1): Conv2d(289, 32, kernel_size=(3, 1), stride=(1, 1))
+  (max_pool_spot_1): MaxPool2d(kernel_size=(3, 1), stride=(2, 1), padding=0, dilation=1, ceil_mode=False)
+  (pad_spot_2): ZeroPad2d((0, 0, 1, 1))
+  (conv_spot_2): Conv2d(32, 16, kernel_size=(3, 1), stride=(1, 1))
+  (max_pool_spot_2): MaxPool2d(kernel_size=(3, 1), stride=(2, 1), padding=0, dilation=1, ceil_mode=False)
+  (conv_conf): Conv2d(464, 30, kernel_size=(1, 1), stride=(1, 1))
+  (conv_class): Conv2d(464, 255, kernel_size=(1, 1), stride=(1, 1))
+  (softmax): Softmax(dim=-1)
+)
+2024-11-26 20:56:20,439 [MainThread  ] [INFO ]  Total number of parameters: 367611
+2024-11-26 20:56:21,315 [MainThread  ] [INFO ]  Start training
+2024-11-26 20:56:52,711 [MainThread  ] [INFO ]  Epoch [1/500] Validation Loss: 140.1349
+2024-11-26 20:57:22,598 [MainThread  ] [INFO ]  Epoch [2/500] Validation Loss: 135.1490
+2024-11-26 20:57:52,270 [MainThread  ] [INFO ]  Epoch [3/500] Validation Loss: 132.2514
+2024-11-26 20:58:22,222 [MainThread  ] [INFO ]  Epoch [4/500] Validation Loss: 130.5785
+2024-11-26 20:58:51,889 [MainThread  ] [INFO ]  Epoch [5/500] Validation Loss: 127.3657
+2024-11-26 20:59:21,603 [MainThread  ] [INFO ]  Epoch [6/500] Validation Loss: 127.0034
+2024-11-26 20:59:53,330 [MainThread  ] [INFO ]  Epoch [7/500] Validation Loss: 128.0665
+2024-11-26 21:00:23,561 [MainThread  ] [INFO ]  Epoch [8/500] Validation Loss: 125.1781
+2024-11-26 21:00:53,739 [MainThread  ] [INFO ]  Epoch [9/500] Validation Loss: 126.5464
+2024-11-26 21:01:23,915 [MainThread  ] [INFO ]  Epoch [10/500] Validation Loss: 126.5334
+2024-11-26 21:01:53,331 [MainThread  ] [INFO ]  Epoch [11/500] Validation Loss: 122.8772
+2024-11-26 21:02:23,012 [MainThread  ] [INFO ]  Epoch [12/500] Validation Loss: 124.6581
+2024-11-26 21:02:53,087 [MainThread  ] [INFO ]  Epoch [13/500] Validation Loss: 127.7621
+2024-11-26 21:03:23,108 [MainThread  ] [INFO ]  Epoch [14/500] Validation Loss: 125.6039
+2024-11-26 21:03:52,363 [MainThread  ] [INFO ]  Epoch [15/500] Validation Loss: 123.8499
+2024-11-26 21:04:22,302 [MainThread  ] [INFO ]  Epoch [16/500] Validation Loss: 126.0880
+2024-11-26 21:04:52,760 [MainThread  ] [INFO ]  Epoch [17/500] Validation Loss: 123.4285
+2024-11-26 21:05:22,531 [MainThread  ] [INFO ]  Epoch [18/500] Validation Loss: 122.5884
+2024-11-26 21:05:51,745 [MainThread  ] [INFO ]  Epoch [19/500] Validation Loss: 123.9152
+2024-11-26 21:06:21,842 [MainThread  ] [INFO ]  Epoch [20/500] Validation Loss: 123.3538
+2024-11-26 21:06:51,970 [MainThread  ] [INFO ]  Epoch [21/500] Validation Loss: 123.5385
+2024-11-26 21:07:16,894 [MainThread  ] [INFO ]  Validation performance at epoch 21 -> 0.3560874535109089
+2024-11-26 21:07:43,815 [MainThread  ] [INFO ]  Test performance at epoch 21 -> 0.3602743617608393
+2024-11-26 21:08:13,696 [MainThread  ] [INFO ]  Epoch [22/500] Validation Loss: 122.7558
+2024-11-26 21:08:43,824 [MainThread  ] [INFO ]  Epoch [23/500] Validation Loss: 120.6036
+2024-11-26 21:09:13,523 [MainThread  ] [INFO ]  Epoch [24/500] Validation Loss: 121.0512
+2024-11-26 21:09:44,169 [MainThread  ] [INFO ]  Epoch [25/500] Validation Loss: 121.9058
+2024-11-26 21:10:15,211 [MainThread  ] [INFO ]  Epoch [26/500] Validation Loss: 122.5953
+2024-11-26 21:10:45,759 [MainThread  ] [INFO ]  Epoch [27/500] Validation Loss: 121.1163
+2024-11-26 21:11:16,189 [MainThread  ] [INFO ]  Epoch [28/500] Validation Loss: 121.9190
+2024-11-26 21:11:45,795 [MainThread  ] [INFO ]  Epoch [29/500] Validation Loss: 122.9841
+2024-11-26 21:12:15,773 [MainThread  ] [INFO ]  Epoch [30/500] Validation Loss: 119.7551
+2024-11-26 21:12:46,731 [MainThread  ] [INFO ]  Epoch [31/500] Validation Loss: 122.9876
+2024-11-26 21:13:16,696 [MainThread  ] [INFO ]  Epoch [32/500] Validation Loss: 122.7347
+2024-11-26 21:13:46,613 [MainThread  ] [INFO ]  Epoch [33/500] Validation Loss: 120.8017
+2024-11-26 21:14:17,008 [MainThread  ] [INFO ]  Epoch [34/500] Validation Loss: 120.7496
+2024-11-26 21:14:46,788 [MainThread  ] [INFO ]  Epoch [35/500] Validation Loss: 121.7712
+2024-11-26 21:15:17,340 [MainThread  ] [INFO ]  Epoch [36/500] Validation Loss: 120.7604
+2024-11-26 21:15:47,286 [MainThread  ] [INFO ]  Epoch [37/500] Validation Loss: 120.1465
+2024-11-26 21:16:17,209 [MainThread  ] [INFO ]  Epoch [38/500] Validation Loss: 122.8586
+2024-11-26 21:16:47,093 [MainThread  ] [INFO ]  Epoch [39/500] Validation Loss: 119.9037
+2024-11-26 21:17:16,668 [MainThread  ] [INFO ]  Epoch [40/500] Validation Loss: 122.2392
+2024-11-26 21:17:47,054 [MainThread  ] [INFO ]  Epoch [41/500] Validation Loss: 119.3065
+2024-11-26 21:18:12,114 [MainThread  ] [INFO ]  Validation performance at epoch 41 -> 0.37985385103249675
+2024-11-26 21:18:38,446 [MainThread  ] [INFO ]  Test performance at epoch 41 -> 0.38043141277808634
+2024-11-26 21:19:08,832 [MainThread  ] [INFO ]  Epoch [42/500] Validation Loss: 119.7705
+2024-11-26 21:19:39,557 [MainThread  ] [INFO ]  Epoch [43/500] Validation Loss: 118.4733
+2024-11-26 21:20:09,533 [MainThread  ] [INFO ]  Epoch [44/500] Validation Loss: 120.9890
+2024-11-26 21:20:40,384 [MainThread  ] [INFO ]  Epoch [45/500] Validation Loss: 119.3933
+2024-11-26 21:21:10,958 [MainThread  ] [INFO ]  Epoch [46/500] Validation Loss: 119.7925
+2024-11-26 21:21:40,885 [MainThread  ] [INFO ]  Epoch [47/500] Validation Loss: 120.3923
+2024-11-26 21:22:10,747 [MainThread  ] [INFO ]  Epoch [48/500] Validation Loss: 120.3765
+2024-11-26 21:22:41,168 [MainThread  ] [INFO ]  Epoch [49/500] Validation Loss: 119.6859
+2024-11-26 21:23:11,074 [MainThread  ] [INFO ]  Epoch [50/500] Validation Loss: 119.6331
+2024-11-26 21:23:41,906 [MainThread  ] [INFO ]  Epoch [51/500] Validation Loss: 121.2318
+2024-11-26 21:24:12,591 [MainThread  ] [INFO ]  Epoch [52/500] Validation Loss: 119.9996
+2024-11-26 21:24:42,920 [MainThread  ] [INFO ]  Epoch [53/500] Validation Loss: 121.2835
+2024-11-26 21:25:12,860 [MainThread  ] [INFO ]  Epoch [54/500] Validation Loss: 122.0436
+2024-11-26 21:25:42,601 [MainThread  ] [INFO ]  Epoch [55/500] Validation Loss: 119.1700
+2024-11-26 21:26:12,381 [MainThread  ] [INFO ]  Epoch [56/500] Validation Loss: 118.3367
+2024-11-26 21:26:42,603 [MainThread  ] [INFO ]  Epoch [57/500] Validation Loss: 118.0263
+2024-11-26 21:27:14,220 [MainThread  ] [INFO ]  Epoch [58/500] Validation Loss: 120.1117
+2024-11-26 21:27:44,602 [MainThread  ] [INFO ]  Epoch [59/500] Validation Loss: 118.4669
+2024-11-26 21:28:15,412 [MainThread  ] [INFO ]  Epoch [60/500] Validation Loss: 119.2183
+2024-11-26 21:28:45,211 [MainThread  ] [INFO ]  Epoch [61/500] Validation Loss: 118.9264
+2024-11-26 21:29:10,715 [MainThread  ] [INFO ]  Validation performance at epoch 61 -> 0.4003032116056067
+2024-11-26 21:29:37,789 [MainThread  ] [INFO ]  Test performance at epoch 61 -> 0.3992307519021783
+2024-11-26 21:30:07,764 [MainThread  ] [INFO ]  Epoch [62/500] Validation Loss: 121.9433
+2024-11-26 21:30:37,764 [MainThread  ] [INFO ]  Epoch [63/500] Validation Loss: 119.4070
+2024-11-26 21:31:07,836 [MainThread  ] [INFO ]  Epoch [64/500] Validation Loss: 119.1945
+2024-11-26 21:31:38,050 [MainThread  ] [INFO ]  Epoch [65/500] Validation Loss: 121.1914
+2024-11-26 21:32:08,095 [MainThread  ] [INFO ]  Epoch [66/500] Validation Loss: 118.4140
+2024-11-26 21:32:38,933 [MainThread  ] [INFO ]  Epoch [67/500] Validation Loss: 119.5557
+2024-11-26 21:33:08,834 [MainThread  ] [INFO ]  Epoch [68/500] Validation Loss: 121.0875
+2024-11-26 21:33:38,302 [MainThread  ] [INFO ]  Epoch [69/500] Validation Loss: 119.5691
+2024-11-26 21:34:08,492 [MainThread  ] [INFO ]  Epoch [70/500] Validation Loss: 118.9972
+2024-11-26 21:34:38,504 [MainThread  ] [INFO ]  Epoch [71/500] Validation Loss: 119.5476
+2024-11-26 21:35:08,972 [MainThread  ] [INFO ]  Epoch [72/500] Validation Loss: 120.4581
+2024-11-26 21:35:38,833 [MainThread  ] [INFO ]  Epoch [73/500] Validation Loss: 121.0441
+2024-11-26 21:36:10,104 [MainThread  ] [INFO ]  Epoch [74/500] Validation Loss: 120.5717
+2024-11-26 21:36:40,710 [MainThread  ] [INFO ]  Epoch [75/500] Validation Loss: 118.1720
+2024-11-26 21:37:10,586 [MainThread  ] [INFO ]  Epoch [76/500] Validation Loss: 118.8340
+2024-11-26 21:37:40,648 [MainThread  ] [INFO ]  Epoch [77/500] Validation Loss: 120.4046
+2024-11-26 21:38:11,452 [MainThread  ] [INFO ]  Epoch [78/500] Validation Loss: 118.6559
+2024-11-26 21:38:41,398 [MainThread  ] [INFO ]  Epoch [79/500] Validation Loss: 119.3712
+2024-11-26 21:39:11,531 [MainThread  ] [INFO ]  Epoch [80/500] Validation Loss: 118.7406
+2024-11-26 21:39:41,153 [MainThread  ] [INFO ]  Epoch [81/500] Validation Loss: 120.1503
+2024-11-26 21:40:06,555 [MainThread  ] [INFO ]  Validation performance at epoch 81 -> 0.39754277867562937
+2024-11-26 21:40:36,133 [MainThread  ] [INFO ]  Epoch [82/500] Validation Loss: 122.3890
+2024-11-26 21:41:06,107 [MainThread  ] [INFO ]  Epoch [83/500] Validation Loss: 119.7439
+2024-11-26 21:41:36,432 [MainThread  ] [INFO ]  Epoch [84/500] Validation Loss: 119.0936
+2024-11-26 21:42:06,193 [MainThread  ] [INFO ]  Epoch [85/500] Validation Loss: 121.1267
+2024-11-26 21:42:36,443 [MainThread  ] [INFO ]  Epoch [86/500] Validation Loss: 119.1113
+2024-11-26 21:43:06,365 [MainThread  ] [INFO ]  Epoch [87/500] Validation Loss: 119.8730
+2024-11-26 21:43:37,059 [MainThread  ] [INFO ]  Epoch [88/500] Validation Loss: 116.4386
+2024-11-26 21:44:07,054 [MainThread  ] [INFO ]  Epoch [89/500] Validation Loss: 119.5236
+2024-11-26 21:44:37,657 [MainThread  ] [INFO ]  Epoch [90/500] Validation Loss: 117.5469
+2024-11-26 21:45:07,620 [MainThread  ] [INFO ]  Epoch [91/500] Validation Loss: 117.7184
+2024-11-26 21:45:37,336 [MainThread  ] [INFO ]  Epoch [92/500] Validation Loss: 118.2615
+2024-11-26 21:46:07,535 [MainThread  ] [INFO ]  Epoch [93/500] Validation Loss: 119.5642
+2024-11-26 21:46:37,145 [MainThread  ] [INFO ]  Epoch [94/500] Validation Loss: 118.1440
+2024-11-26 21:47:07,686 [MainThread  ] [INFO ]  Epoch [95/500] Validation Loss: 119.0783
+2024-11-26 21:47:37,212 [MainThread  ] [INFO ]  Epoch [96/500] Validation Loss: 117.2614
+2024-11-26 21:48:07,125 [MainThread  ] [INFO ]  Epoch [97/500] Validation Loss: 119.6079
+2024-11-26 21:48:36,738 [MainThread  ] [INFO ]  Epoch [98/500] Validation Loss: 118.6609
+2024-11-26 21:49:06,859 [MainThread  ] [INFO ]  Epoch [99/500] Validation Loss: 119.0452
+2024-11-26 21:49:37,148 [MainThread  ] [INFO ]  Epoch [100/500] Validation Loss: 118.2237
+2024-11-26 21:50:08,588 [MainThread  ] [INFO ]  Epoch [101/500] Validation Loss: 117.6760
+2024-11-26 21:50:33,954 [MainThread  ] [INFO ]  Validation performance at epoch 101 -> 0.4044465886295123
+2024-11-26 21:51:00,879 [MainThread  ] [INFO ]  Test performance at epoch 101 -> 0.40154536475174024
+2024-11-26 21:51:30,958 [MainThread  ] [INFO ]  Epoch [102/500] Validation Loss: 118.5559
+2024-11-26 21:52:00,815 [MainThread  ] [INFO ]  Epoch [103/500] Validation Loss: 118.8680
+2024-11-26 21:52:30,784 [MainThread  ] [INFO ]  Epoch [104/500] Validation Loss: 118.8040
+2024-11-26 21:53:00,940 [MainThread  ] [INFO ]  Epoch [105/500] Validation Loss: 119.8547
+2024-11-26 21:53:31,129 [MainThread  ] [INFO ]  Epoch [106/500] Validation Loss: 119.3434
+2024-11-26 21:54:01,065 [MainThread  ] [INFO ]  Epoch [107/500] Validation Loss: 119.8582
+2024-11-26 21:54:31,029 [MainThread  ] [INFO ]  Epoch [108/500] Validation Loss: 118.5188
+2024-11-26 21:55:01,119 [MainThread  ] [INFO ]  Epoch [109/500] Validation Loss: 117.9144
+2024-11-26 21:55:31,779 [MainThread  ] [INFO ]  Epoch [110/500] Validation Loss: 117.8482
+2024-11-26 21:56:01,484 [MainThread  ] [INFO ]  Epoch [111/500] Validation Loss: 117.9984
+2024-11-26 21:56:31,864 [MainThread  ] [INFO ]  Epoch [112/500] Validation Loss: 118.4203
+2024-11-26 21:57:02,516 [MainThread  ] [INFO ]  Epoch [113/500] Validation Loss: 119.1512
+2024-11-26 21:57:32,135 [MainThread  ] [INFO ]  Epoch [114/500] Validation Loss: 118.5778
+2024-11-26 21:58:02,029 [MainThread  ] [INFO ]  Epoch [115/500] Validation Loss: 119.8681
+2024-11-26 21:58:32,075 [MainThread  ] [INFO ]  Epoch [116/500] Validation Loss: 119.4474
+2024-11-26 21:59:02,021 [MainThread  ] [INFO ]  Epoch [117/500] Validation Loss: 118.3589
+2024-11-26 21:59:31,957 [MainThread  ] [INFO ]  Epoch [118/500] Validation Loss: 118.1269
+2024-11-26 22:00:02,298 [MainThread  ] [INFO ]  Epoch [119/500] Validation Loss: 119.0669
+2024-11-26 22:00:31,947 [MainThread  ] [INFO ]  Epoch [120/500] Validation Loss: 116.8123
+2024-11-26 22:01:01,826 [MainThread  ] [INFO ]  Epoch [121/500] Validation Loss: 117.7962
+2024-11-26 22:01:27,330 [MainThread  ] [INFO ]  Validation performance at epoch 121 -> 0.41530710816555616
+2024-11-26 22:01:54,221 [MainThread  ] [INFO ]  Test performance at epoch 121 -> 0.4088200271733678
+2024-11-26 22:02:24,912 [MainThread  ] [INFO ]  Epoch [122/500] Validation Loss: 119.5219
+2024-11-26 22:02:55,049 [MainThread  ] [INFO ]  Epoch [123/500] Validation Loss: 118.6438
+2024-11-26 22:03:25,160 [MainThread  ] [INFO ]  Epoch [124/500] Validation Loss: 119.7055
+2024-11-26 22:03:54,874 [MainThread  ] [INFO ]  Epoch [125/500] Validation Loss: 119.5292
+2024-11-26 22:04:25,081 [MainThread  ] [INFO ]  Epoch [126/500] Validation Loss: 117.7747
+2024-11-26 22:04:55,004 [MainThread  ] [INFO ]  Epoch [127/500] Validation Loss: 120.6970
+2024-11-26 22:05:25,359 [MainThread  ] [INFO ]  Epoch [128/500] Validation Loss: 119.8475
+2024-11-26 22:05:56,066 [MainThread  ] [INFO ]  Epoch [129/500] Validation Loss: 118.0384
+2024-11-26 22:06:27,506 [MainThread  ] [INFO ]  Epoch [130/500] Validation Loss: 117.4060
+2024-11-26 22:06:59,170 [MainThread  ] [INFO ]  Epoch [131/500] Validation Loss: 117.7413
+2024-11-26 22:07:29,412 [MainThread  ] [INFO ]  Epoch [132/500] Validation Loss: 118.2286
+2024-11-26 22:07:59,419 [MainThread  ] [INFO ]  Epoch [133/500] Validation Loss: 117.0441
+2024-11-26 22:08:29,351 [MainThread  ] [INFO ]  Epoch [134/500] Validation Loss: 118.2221
+2024-11-26 22:08:59,905 [MainThread  ] [INFO ]  Epoch [135/500] Validation Loss: 118.8883
+2024-11-26 22:09:30,950 [MainThread  ] [INFO ]  Epoch [136/500] Validation Loss: 118.5417
+2024-11-26 22:10:01,196 [MainThread  ] [INFO ]  Epoch [137/500] Validation Loss: 119.1605
+2024-11-26 22:10:32,286 [MainThread  ] [INFO ]  Epoch [138/500] Validation Loss: 118.2001
+2024-11-26 22:11:02,703 [MainThread  ] [INFO ]  Epoch [139/500] Validation Loss: 119.0764
+2024-11-26 22:11:32,883 [MainThread  ] [INFO ]  Epoch [140/500] Validation Loss: 118.3616
+2024-11-26 22:12:03,600 [MainThread  ] [INFO ]  Epoch [141/500] Validation Loss: 119.0253
+2024-11-26 22:12:29,127 [MainThread  ] [INFO ]  Validation performance at epoch 141 -> 0.4155259681669958
+2024-11-26 22:12:56,413 [MainThread  ] [INFO ]  Test performance at epoch 141 -> 0.3985387279025259
+2024-11-26 22:13:27,256 [MainThread  ] [INFO ]  Epoch [142/500] Validation Loss: 118.2332
+2024-11-26 22:13:57,072 [MainThread  ] [INFO ]  Epoch [143/500] Validation Loss: 118.9766
+2024-11-26 22:14:27,174 [MainThread  ] [INFO ]  Epoch [144/500] Validation Loss: 118.9478
+2024-11-26 22:14:57,588 [MainThread  ] [INFO ]  Epoch [145/500] Validation Loss: 117.8075
+2024-11-26 22:15:29,204 [MainThread  ] [INFO ]  Epoch [146/500] Validation Loss: 117.1860
+2024-11-26 22:16:00,170 [MainThread  ] [INFO ]  Epoch [147/500] Validation Loss: 116.3008
+2024-11-26 22:16:30,958 [MainThread  ] [INFO ]  Epoch [148/500] Validation Loss: 118.0386
+2024-11-26 22:17:00,903 [MainThread  ] [INFO ]  Epoch [149/500] Validation Loss: 118.0563
+2024-11-26 22:17:31,480 [MainThread  ] [INFO ]  Epoch [150/500] Validation Loss: 118.5734
+2024-11-26 22:18:02,195 [MainThread  ] [INFO ]  Epoch [151/500] Validation Loss: 118.1732
+2024-11-26 22:18:32,887 [MainThread  ] [INFO ]  Epoch [152/500] Validation Loss: 117.8867
+2024-11-26 22:19:04,074 [MainThread  ] [INFO ]  Epoch [153/500] Validation Loss: 118.7301
+2024-11-26 22:19:34,492 [MainThread  ] [INFO ]  Epoch [154/500] Validation Loss: 118.6214
+2024-11-26 22:20:04,889 [MainThread  ] [INFO ]  Epoch [155/500] Validation Loss: 119.7136
+2024-11-26 22:20:34,899 [MainThread  ] [INFO ]  Epoch [156/500] Validation Loss: 120.0797
+2024-11-26 22:21:06,048 [MainThread  ] [INFO ]  Epoch [157/500] Validation Loss: 119.6268
+2024-11-26 22:21:37,176 [MainThread  ] [INFO ]  Epoch [158/500] Validation Loss: 119.7582
+2024-11-26 22:22:07,746 [MainThread  ] [INFO ]  Epoch [159/500] Validation Loss: 117.5412
+2024-11-26 22:22:37,974 [MainThread  ] [INFO ]  Epoch [160/500] Validation Loss: 118.5144
+2024-11-26 22:23:08,184 [MainThread  ] [INFO ]  Epoch [161/500] Validation Loss: 118.4451
+2024-11-26 22:23:33,730 [MainThread  ] [INFO ]  Validation performance at epoch 161 -> 0.412565700514752
+2024-11-26 22:24:04,397 [MainThread  ] [INFO ]  Epoch [162/500] Validation Loss: 117.7033
+2024-11-26 22:24:34,772 [MainThread  ] [INFO ]  Epoch [163/500] Validation Loss: 118.2482
+2024-11-26 22:25:05,123 [MainThread  ] [INFO ]  Epoch [164/500] Validation Loss: 119.2000
+2024-11-26 22:25:35,354 [MainThread  ] [INFO ]  Epoch [165/500] Validation Loss: 118.6464
+2024-11-26 22:26:05,151 [MainThread  ] [INFO ]  Epoch [166/500] Validation Loss: 117.7778
+2024-11-26 22:26:34,763 [MainThread  ] [INFO ]  Epoch [167/500] Validation Loss: 117.6758
+2024-11-26 22:27:05,457 [MainThread  ] [INFO ]  Epoch [168/500] Validation Loss: 117.3180
+2024-11-26 22:27:36,859 [MainThread  ] [INFO ]  Epoch [169/500] Validation Loss: 117.0927
+2024-11-26 22:28:07,209 [MainThread  ] [INFO ]  Epoch [170/500] Validation Loss: 119.1077
+2024-11-26 22:28:37,618 [MainThread  ] [INFO ]  Epoch [171/500] Validation Loss: 117.6926
+2024-11-26 22:29:08,083 [MainThread  ] [INFO ]  Epoch [172/500] Validation Loss: 120.2016
+2024-11-26 22:29:38,490 [MainThread  ] [INFO ]  Epoch [173/500] Validation Loss: 117.2029
+2024-11-26 22:30:09,193 [MainThread  ] [INFO ]  Epoch [174/500] Validation Loss: 119.9017
+2024-11-26 22:30:39,970 [MainThread  ] [INFO ]  Epoch [175/500] Validation Loss: 118.2903
+2024-11-26 22:31:10,114 [MainThread  ] [INFO ]  Epoch [176/500] Validation Loss: 119.1051
+2024-11-26 22:31:40,242 [MainThread  ] [INFO ]  Epoch [177/500] Validation Loss: 119.3536
+2024-11-26 22:32:10,141 [MainThread  ] [INFO ]  Epoch [178/500] Validation Loss: 120.1290
+2024-11-26 22:32:40,967 [MainThread  ] [INFO ]  Epoch [179/500] Validation Loss: 118.7286
+2024-11-26 22:33:11,320 [MainThread  ] [INFO ]  Epoch [180/500] Validation Loss: 119.1652
+2024-11-26 22:33:41,688 [MainThread  ] [INFO ]  Epoch [181/500] Validation Loss: 119.7705
+2024-11-26 22:34:07,011 [MainThread  ] [INFO ]  Validation performance at epoch 181 -> 0.4257669113825802
+2024-11-26 22:34:34,074 [MainThread  ] [INFO ]  Test performance at epoch 181 -> 0.41077049942182425
+2024-11-26 22:35:05,398 [MainThread  ] [INFO ]  Epoch [182/500] Validation Loss: 118.0600
+2024-11-26 22:35:36,404 [MainThread  ] [INFO ]  Epoch [183/500] Validation Loss: 119.3185
+2024-11-26 22:36:07,049 [MainThread  ] [INFO ]  Epoch [184/500] Validation Loss: 120.7694
+2024-11-26 22:36:37,482 [MainThread  ] [INFO ]  Epoch [185/500] Validation Loss: 118.7098
+2024-11-26 22:37:08,812 [MainThread  ] [INFO ]  Epoch [186/500] Validation Loss: 119.5867
+2024-11-26 22:37:39,141 [MainThread  ] [INFO ]  Epoch [187/500] Validation Loss: 118.5931
+2024-11-26 22:38:09,867 [MainThread  ] [INFO ]  Epoch [188/500] Validation Loss: 119.2969
+2024-11-26 22:38:40,372 [MainThread  ] [INFO ]  Epoch [189/500] Validation Loss: 117.7503
+2024-11-26 22:39:10,839 [MainThread  ] [INFO ]  Epoch [190/500] Validation Loss: 119.6444
+2024-11-26 22:39:41,151 [MainThread  ] [INFO ]  Epoch [191/500] Validation Loss: 119.3743
+2024-11-26 22:40:11,288 [MainThread  ] [INFO ]  Epoch [192/500] Validation Loss: 117.3645
+2024-11-26 22:40:42,045 [MainThread  ] [INFO ]  Epoch [193/500] Validation Loss: 117.6882
+2024-11-26 22:41:12,828 [MainThread  ] [INFO ]  Epoch [194/500] Validation Loss: 119.7998
+2024-11-26 22:41:42,992 [MainThread  ] [INFO ]  Epoch [195/500] Validation Loss: 119.2640
+2024-11-26 22:42:13,693 [MainThread  ] [INFO ]  Epoch [196/500] Validation Loss: 118.0454
+2024-11-26 22:42:43,632 [MainThread  ] [INFO ]  Epoch [197/500] Validation Loss: 121.1552
+2024-11-26 22:43:14,247 [MainThread  ] [INFO ]  Epoch [198/500] Validation Loss: 120.1041
+2024-11-26 22:43:44,667 [MainThread  ] [INFO ]  Epoch [199/500] Validation Loss: 119.7964
+2024-11-26 22:44:15,307 [MainThread  ] [INFO ]  Epoch [200/500] Validation Loss: 119.0344
+2024-11-26 22:44:46,946 [MainThread  ] [INFO ]  Epoch [201/500] Validation Loss: 119.8750
+2024-11-26 22:45:12,647 [MainThread  ] [INFO ]  Validation performance at epoch 201 -> 0.4020268018864092
+2024-11-26 22:45:44,048 [MainThread  ] [INFO ]  Epoch [202/500] Validation Loss: 119.1808
+2024-11-26 22:46:15,192 [MainThread  ] [INFO ]  Epoch [203/500] Validation Loss: 118.1417
+2024-11-26 22:46:45,838 [MainThread  ] [INFO ]  Epoch [204/500] Validation Loss: 119.6318
+2024-11-26 22:47:17,130 [MainThread  ] [INFO ]  Epoch [205/500] Validation Loss: 119.3983
+2024-11-26 22:47:47,359 [MainThread  ] [INFO ]  Epoch [206/500] Validation Loss: 118.3995
+2024-11-26 22:48:18,324 [MainThread  ] [INFO ]  Epoch [207/500] Validation Loss: 118.6727
+2024-11-26 22:48:48,259 [MainThread  ] [INFO ]  Epoch [208/500] Validation Loss: 118.0719
+2024-11-26 22:49:18,088 [MainThread  ] [INFO ]  Epoch [209/500] Validation Loss: 118.9230
+2024-11-26 22:49:48,374 [MainThread  ] [INFO ]  Epoch [210/500] Validation Loss: 117.8833
+2024-11-26 22:50:19,072 [MainThread  ] [INFO ]  Epoch [211/500] Validation Loss: 119.3261
+2024-11-26 22:50:49,592 [MainThread  ] [INFO ]  Epoch [212/500] Validation Loss: 118.6923
+2024-11-26 22:51:20,100 [MainThread  ] [INFO ]  Epoch [213/500] Validation Loss: 117.1161
+2024-11-26 22:51:50,378 [MainThread  ] [INFO ]  Epoch [214/500] Validation Loss: 118.5729
+2024-11-26 22:52:20,441 [MainThread  ] [INFO ]  Epoch [215/500] Validation Loss: 118.8454
+2024-11-26 22:52:51,611 [MainThread  ] [INFO ]  Epoch [216/500] Validation Loss: 119.1592
+2024-11-26 22:53:23,069 [MainThread  ] [INFO ]  Epoch [217/500] Validation Loss: 119.0194
+2024-11-26 22:53:53,788 [MainThread  ] [INFO ]  Epoch [218/500] Validation Loss: 119.4511
+2024-11-26 22:54:24,513 [MainThread  ] [INFO ]  Epoch [219/500] Validation Loss: 119.9083
+2024-11-26 22:54:55,382 [MainThread  ] [INFO ]  Epoch [220/500] Validation Loss: 121.7812
+2024-11-26 22:55:26,137 [MainThread  ] [INFO ]  Epoch [221/500] Validation Loss: 119.9878
+2024-11-26 22:55:51,394 [MainThread  ] [INFO ]  Validation performance at epoch 221 -> 0.4022351584300628
+2024-11-26 22:56:21,625 [MainThread  ] [INFO ]  Epoch [222/500] Validation Loss: 118.8209
+2024-11-26 22:56:51,887 [MainThread  ] [INFO ]  Epoch [223/500] Validation Loss: 118.6730
+2024-11-26 22:57:22,234 [MainThread  ] [INFO ]  Epoch [224/500] Validation Loss: 119.3565
+2024-11-26 22:57:53,565 [MainThread  ] [INFO ]  Epoch [225/500] Validation Loss: 117.9511
+2024-11-26 22:58:23,521 [MainThread  ] [INFO ]  Epoch [226/500] Validation Loss: 119.7157
+2024-11-26 22:58:53,655 [MainThread  ] [INFO ]  Epoch [227/500] Validation Loss: 118.8483
+2024-11-26 22:59:23,760 [MainThread  ] [INFO ]  Epoch [228/500] Validation Loss: 118.6753
+2024-11-26 22:59:54,679 [MainThread  ] [INFO ]  Epoch [229/500] Validation Loss: 117.9592
+2024-11-26 23:00:25,180 [MainThread  ] [INFO ]  Epoch [230/500] Validation Loss: 117.3739
+2024-11-26 23:00:55,975 [MainThread  ] [INFO ]  Epoch [231/500] Validation Loss: 119.8385
+2024-11-26 23:01:27,289 [MainThread  ] [INFO ]  Epoch [232/500] Validation Loss: 119.1409
+2024-11-26 23:01:58,117 [MainThread  ] [INFO ]  Epoch [233/500] Validation Loss: 118.7917
+2024-11-26 23:02:29,049 [MainThread  ] [INFO ]  Epoch [234/500] Validation Loss: 117.9029
+2024-11-26 23:02:59,072 [MainThread  ] [INFO ]  Epoch [235/500] Validation Loss: 119.2424
+2024-11-26 23:03:30,105 [MainThread  ] [INFO ]  Epoch [236/500] Validation Loss: 120.3042
+2024-11-26 23:04:00,869 [MainThread  ] [INFO ]  Epoch [237/500] Validation Loss: 118.4498
+2024-11-26 23:04:32,002 [MainThread  ] [INFO ]  Epoch [238/500] Validation Loss: 118.6225
+2024-11-26 23:05:02,790 [MainThread  ] [INFO ]  Epoch [239/500] Validation Loss: 116.1770
+2024-11-26 23:05:33,310 [MainThread  ] [INFO ]  Epoch [240/500] Validation Loss: 117.2030
+2024-11-26 23:05:33,312 [MainThread  ] [INFO ]  Plateau Reached!
+2024-11-26 23:06:03,505 [MainThread  ] [INFO ]  Epoch [241/500] Validation Loss: 116.2227
+2024-11-26 23:06:28,972 [MainThread  ] [INFO ]  Validation performance at epoch 241 -> 0.4098617250253306
+2024-11-26 23:06:59,988 [MainThread  ] [INFO ]  Epoch [242/500] Validation Loss: 115.0427
+2024-11-26 23:07:30,730 [MainThread  ] [INFO ]  Epoch [243/500] Validation Loss: 115.6156
+2024-11-26 23:08:01,427 [MainThread  ] [INFO ]  Epoch [244/500] Validation Loss: 114.9680
+2024-11-26 23:08:31,741 [MainThread  ] [INFO ]  Epoch [245/500] Validation Loss: 115.1472
+2024-11-26 23:09:02,255 [MainThread  ] [INFO ]  Epoch [246/500] Validation Loss: 115.1990
+2024-11-26 23:09:33,204 [MainThread  ] [INFO ]  Epoch [247/500] Validation Loss: 115.0053
+2024-11-26 23:10:03,064 [MainThread  ] [INFO ]  Epoch [248/500] Validation Loss: 114.1581
+2024-11-26 23:10:34,156 [MainThread  ] [INFO ]  Epoch [249/500] Validation Loss: 114.5189
+2024-11-26 23:11:04,669 [MainThread  ] [INFO ]  Epoch [250/500] Validation Loss: 114.2062
+2024-11-26 23:11:35,424 [MainThread  ] [INFO ]  Epoch [251/500] Validation Loss: 114.0992
+2024-11-26 23:12:06,202 [MainThread  ] [INFO ]  Epoch [252/500] Validation Loss: 113.8493
+2024-11-26 23:12:36,660 [MainThread  ] [INFO ]  Epoch [253/500] Validation Loss: 113.6475
+2024-11-26 23:13:07,976 [MainThread  ] [INFO ]  Epoch [254/500] Validation Loss: 112.9155
+2024-11-26 23:13:38,910 [MainThread  ] [INFO ]  Epoch [255/500] Validation Loss: 113.7336
+2024-11-26 23:14:09,792 [MainThread  ] [INFO ]  Epoch [256/500] Validation Loss: 113.8464
+2024-11-26 23:14:39,995 [MainThread  ] [INFO ]  Epoch [257/500] Validation Loss: 113.3524
+2024-11-26 23:15:11,640 [MainThread  ] [INFO ]  Epoch [258/500] Validation Loss: 113.9442
+2024-11-26 23:15:41,564 [MainThread  ] [INFO ]  Epoch [259/500] Validation Loss: 113.8941
+2024-11-26 23:16:12,076 [MainThread  ] [INFO ]  Epoch [260/500] Validation Loss: 113.9865
+2024-11-26 23:16:42,112 [MainThread  ] [INFO ]  Epoch [261/500] Validation Loss: 113.4118
+2024-11-26 23:17:07,644 [MainThread  ] [INFO ]  Validation performance at epoch 261 -> 0.42301914438927807
+2024-11-26 23:17:38,991 [MainThread  ] [INFO ]  Epoch [262/500] Validation Loss: 112.5892
+2024-11-26 23:18:09,804 [MainThread  ] [INFO ]  Epoch [263/500] Validation Loss: 113.3384
+2024-11-26 23:18:40,132 [MainThread  ] [INFO ]  Epoch [264/500] Validation Loss: 112.3889
+2024-11-26 23:19:11,250 [MainThread  ] [INFO ]  Epoch [265/500] Validation Loss: 113.5225
+2024-11-26 23:19:42,075 [MainThread  ] [INFO ]  Epoch [266/500] Validation Loss: 113.2163
+2024-11-26 23:20:12,547 [MainThread  ] [INFO ]  Epoch [267/500] Validation Loss: 114.3661
+2024-11-26 23:20:43,552 [MainThread  ] [INFO ]  Epoch [268/500] Validation Loss: 113.3948
+2024-11-26 23:21:14,048 [MainThread  ] [INFO ]  Epoch [269/500] Validation Loss: 112.6134
+2024-11-26 23:21:45,044 [MainThread  ] [INFO ]  Epoch [270/500] Validation Loss: 114.7065
+2024-11-26 23:22:15,898 [MainThread  ] [INFO ]  Epoch [271/500] Validation Loss: 112.2323
+2024-11-26 23:22:46,155 [MainThread  ] [INFO ]  Epoch [272/500] Validation Loss: 112.8596
+2024-11-26 23:23:16,653 [MainThread  ] [INFO ]  Epoch [273/500] Validation Loss: 112.5574
+2024-11-26 23:23:47,084 [MainThread  ] [INFO ]  Epoch [274/500] Validation Loss: 114.2672
+2024-11-26 23:24:17,652 [MainThread  ] [INFO ]  Epoch [275/500] Validation Loss: 113.2636
+2024-11-26 23:24:48,096 [MainThread  ] [INFO ]  Epoch [276/500] Validation Loss: 112.7431
+2024-11-26 23:25:18,234 [MainThread  ] [INFO ]  Epoch [277/500] Validation Loss: 113.3955
+2024-11-26 23:25:48,036 [MainThread  ] [INFO ]  Epoch [278/500] Validation Loss: 114.1043
+2024-11-26 23:26:17,632 [MainThread  ] [INFO ]  Epoch [279/500] Validation Loss: 113.0058
+2024-11-26 23:26:47,915 [MainThread  ] [INFO ]  Epoch [280/500] Validation Loss: 112.5800
+2024-11-26 23:27:18,640 [MainThread  ] [INFO ]  Epoch [281/500] Validation Loss: 113.4921
+2024-11-26 23:27:43,930 [MainThread  ] [INFO ]  Validation performance at epoch 281 -> 0.4444550658838509
+2024-11-26 23:28:10,675 [MainThread  ] [INFO ]  Test performance at epoch 281 -> 0.4300523902459202
+2024-11-26 23:28:40,842 [MainThread  ] [INFO ]  Epoch [282/500] Validation Loss: 113.4694
+2024-11-26 23:29:11,094 [MainThread  ] [INFO ]  Epoch [283/500] Validation Loss: 114.0842
+2024-11-26 23:29:41,206 [MainThread  ] [INFO ]  Epoch [284/500] Validation Loss: 113.9939
+2024-11-26 23:30:11,369 [MainThread  ] [INFO ]  Epoch [285/500] Validation Loss: 114.6163
+2024-11-26 23:30:41,415 [MainThread  ] [INFO ]  Epoch [286/500] Validation Loss: 114.4119
+2024-11-26 23:31:11,353 [MainThread  ] [INFO ]  Epoch [287/500] Validation Loss: 114.4706
+2024-11-26 23:31:41,534 [MainThread  ] [INFO ]  Epoch [288/500] Validation Loss: 114.3952
+2024-11-26 23:32:11,406 [MainThread  ] [INFO ]  Epoch [289/500] Validation Loss: 114.3270
+2024-11-26 23:32:41,450 [MainThread  ] [INFO ]  Epoch [290/500] Validation Loss: 113.9464
+2024-11-26 23:33:10,999 [MainThread  ] [INFO ]  Epoch [291/500] Validation Loss: 114.9597
+2024-11-26 23:33:41,871 [MainThread  ] [INFO ]  Epoch [292/500] Validation Loss: 114.0744
+2024-11-26 23:34:11,999 [MainThread  ] [INFO ]  Epoch [293/500] Validation Loss: 114.2467
+2024-11-26 23:34:42,330 [MainThread  ] [INFO ]  Epoch [294/500] Validation Loss: 114.4450
+2024-11-26 23:35:12,379 [MainThread  ] [INFO ]  Epoch [295/500] Validation Loss: 113.3697
+2024-11-26 23:35:42,245 [MainThread  ] [INFO ]  Epoch [296/500] Validation Loss: 113.6444
+2024-11-26 23:36:12,407 [MainThread  ] [INFO ]  Epoch [297/500] Validation Loss: 113.5149
+2024-11-26 23:36:42,455 [MainThread  ] [INFO ]  Epoch [298/500] Validation Loss: 115.0465
+2024-11-26 23:37:12,441 [MainThread  ] [INFO ]  Epoch [299/500] Validation Loss: 114.6873
+2024-11-26 23:37:43,405 [MainThread  ] [INFO ]  Epoch [300/500] Validation Loss: 113.8948
+2024-11-26 23:38:13,770 [MainThread  ] [INFO ]  Epoch [301/500] Validation Loss: 113.7807
+2024-11-26 23:38:39,059 [MainThread  ] [INFO ]  Validation performance at epoch 301 -> 0.43881248123586597
+2024-11-26 23:39:09,099 [MainThread  ] [INFO ]  Epoch [302/500] Validation Loss: 113.5353
+2024-11-26 23:39:40,458 [MainThread  ] [INFO ]  Epoch [303/500] Validation Loss: 114.7405
+2024-11-26 23:40:10,614 [MainThread  ] [INFO ]  Epoch [304/500] Validation Loss: 113.9081
+2024-11-26 23:40:40,901 [MainThread  ] [INFO ]  Epoch [305/500] Validation Loss: 115.4711
+2024-11-26 23:41:11,429 [MainThread  ] [INFO ]  Epoch [306/500] Validation Loss: 113.7257
+2024-11-26 23:41:41,691 [MainThread  ] [INFO ]  Epoch [307/500] Validation Loss: 114.2626
+2024-11-26 23:42:12,122 [MainThread  ] [INFO ]  Epoch [308/500] Validation Loss: 113.7239
+2024-11-26 23:42:41,807 [MainThread  ] [INFO ]  Epoch [309/500] Validation Loss: 113.8302
+2024-11-26 23:43:12,348 [MainThread  ] [INFO ]  Epoch [310/500] Validation Loss: 113.5021
+2024-11-26 23:43:43,349 [MainThread  ] [INFO ]  Epoch [311/500] Validation Loss: 115.0962
+2024-11-26 23:44:13,689 [MainThread  ] [INFO ]  Epoch [312/500] Validation Loss: 114.9613
+2024-11-26 23:44:43,897 [MainThread  ] [INFO ]  Epoch [313/500] Validation Loss: 114.8711
+2024-11-26 23:45:14,024 [MainThread  ] [INFO ]  Epoch [314/500] Validation Loss: 114.6275
+2024-11-26 23:45:44,777 [MainThread  ] [INFO ]  Epoch [315/500] Validation Loss: 114.4698
+2024-11-26 23:46:14,682 [MainThread  ] [INFO ]  Epoch [316/500] Validation Loss: 115.4557
+2024-11-26 23:46:45,249 [MainThread  ] [INFO ]  Epoch [317/500] Validation Loss: 114.6474
+2024-11-26 23:47:15,625 [MainThread  ] [INFO ]  Epoch [318/500] Validation Loss: 113.8560
+2024-11-26 23:47:45,920 [MainThread  ] [INFO ]  Epoch [319/500] Validation Loss: 114.1425
+2024-11-26 23:48:15,927 [MainThread  ] [INFO ]  Epoch [320/500] Validation Loss: 115.0861
+2024-11-26 23:48:46,877 [MainThread  ] [INFO ]  Epoch [321/500] Validation Loss: 115.8077
+2024-11-26 23:49:12,348 [MainThread  ] [INFO ]  Validation performance at epoch 321 -> 0.43140686805305045
+2024-11-26 23:49:43,061 [MainThread  ] [INFO ]  Epoch [322/500] Validation Loss: 114.2613
+2024-11-26 23:50:13,842 [MainThread  ] [INFO ]  Epoch [323/500] Validation Loss: 114.8372
+2024-11-26 23:50:44,285 [MainThread  ] [INFO ]  Epoch [324/500] Validation Loss: 116.3798
+2024-11-26 23:51:14,850 [MainThread  ] [INFO ]  Epoch [325/500] Validation Loss: 114.7538
+2024-11-26 23:51:45,378 [MainThread  ] [INFO ]  Epoch [326/500] Validation Loss: 115.1831
+2024-11-26 23:52:15,911 [MainThread  ] [INFO ]  Epoch [327/500] Validation Loss: 114.3031
+2024-11-26 23:52:47,102 [MainThread  ] [INFO ]  Epoch [328/500] Validation Loss: 115.2170
+2024-11-26 23:53:18,305 [MainThread  ] [INFO ]  Epoch [329/500] Validation Loss: 114.8482
+2024-11-26 23:53:48,603 [MainThread  ] [INFO ]  Epoch [330/500] Validation Loss: 116.2197
+2024-11-26 23:54:19,321 [MainThread  ] [INFO ]  Epoch [331/500] Validation Loss: 115.0015
+2024-11-26 23:54:49,175 [MainThread  ] [INFO ]  Epoch [332/500] Validation Loss: 115.3853
+2024-11-26 23:55:19,461 [MainThread  ] [INFO ]  Epoch [333/500] Validation Loss: 115.3549
+2024-11-26 23:55:50,175 [MainThread  ] [INFO ]  Epoch [334/500] Validation Loss: 114.8400
+2024-11-26 23:56:20,813 [MainThread  ] [INFO ]  Epoch [335/500] Validation Loss: 116.5173
+2024-11-26 23:56:51,303 [MainThread  ] [INFO ]  Epoch [336/500] Validation Loss: 115.2515
+2024-11-26 23:57:21,992 [MainThread  ] [INFO ]  Epoch [337/500] Validation Loss: 116.0261
+2024-11-26 23:57:52,483 [MainThread  ] [INFO ]  Epoch [338/500] Validation Loss: 114.3098
+2024-11-26 23:58:22,909 [MainThread  ] [INFO ]  Epoch [339/500] Validation Loss: 116.1602
+2024-11-26 23:58:54,185 [MainThread  ] [INFO ]  Epoch [340/500] Validation Loss: 115.1055
+2024-11-26 23:59:24,480 [MainThread  ] [INFO ]  Epoch [341/500] Validation Loss: 116.2204
+2024-11-26 23:59:49,666 [MainThread  ] [INFO ]  Validation performance at epoch 341 -> 0.4177069186585704
+2024-11-27 00:00:20,910 [MainThread  ] [INFO ]  Epoch [342/500] Validation Loss: 116.2604
+2024-11-27 00:00:50,700 [MainThread  ] [INFO ]  Epoch [343/500] Validation Loss: 115.9154
+2024-11-27 00:01:20,754 [MainThread  ] [INFO ]  Epoch [344/500] Validation Loss: 116.8395
+2024-11-27 00:01:51,478 [MainThread  ] [INFO ]  Epoch [345/500] Validation Loss: 115.4208
+2024-11-27 00:02:22,127 [MainThread  ] [INFO ]  Epoch [346/500] Validation Loss: 115.5773
+2024-11-27 00:02:53,152 [MainThread  ] [INFO ]  Epoch [347/500] Validation Loss: 117.5003
+2024-11-27 00:03:24,227 [MainThread  ] [INFO ]  Epoch [348/500] Validation Loss: 115.2575
+2024-11-27 00:03:54,885 [MainThread  ] [INFO ]  Epoch [349/500] Validation Loss: 116.9794
+2024-11-27 00:04:25,245 [MainThread  ] [INFO ]  Epoch [350/500] Validation Loss: 116.0302
+2024-11-27 00:04:55,999 [MainThread  ] [INFO ]  Epoch [351/500] Validation Loss: 116.2084
+2024-11-27 00:05:26,304 [MainThread  ] [INFO ]  Epoch [352/500] Validation Loss: 114.7066
+2024-11-27 00:05:56,333 [MainThread  ] [INFO ]  Epoch [353/500] Validation Loss: 116.9872
+2024-11-27 00:06:27,060 [MainThread  ] [INFO ]  Epoch [354/500] Validation Loss: 116.7669
+2024-11-27 00:06:57,610 [MainThread  ] [INFO ]  Epoch [355/500] Validation Loss: 115.6004
+2024-11-27 00:07:27,703 [MainThread  ] [INFO ]  Epoch [356/500] Validation Loss: 116.0038
+2024-11-27 00:07:57,634 [MainThread  ] [INFO ]  Epoch [357/500] Validation Loss: 116.3699
+2024-11-27 00:08:27,913 [MainThread  ] [INFO ]  Epoch [358/500] Validation Loss: 117.1095
+2024-11-27 00:08:58,163 [MainThread  ] [INFO ]  Epoch [359/500] Validation Loss: 115.9425
+2024-11-27 00:09:28,202 [MainThread  ] [INFO ]  Epoch [360/500] Validation Loss: 116.9043
+2024-11-27 00:09:58,940 [MainThread  ] [INFO ]  Epoch [361/500] Validation Loss: 116.1297
+2024-11-27 00:10:24,279 [MainThread  ] [INFO ]  Validation performance at epoch 361 -> 0.40607424289974847
+2024-11-27 00:10:54,949 [MainThread  ] [INFO ]  Epoch [362/500] Validation Loss: 116.5485
+2024-11-27 00:11:25,101 [MainThread  ] [INFO ]  Epoch [363/500] Validation Loss: 116.6870
+2024-11-27 00:11:55,241 [MainThread  ] [INFO ]  Epoch [364/500] Validation Loss: 114.9707
+2024-11-27 00:12:25,690 [MainThread  ] [INFO ]  Epoch [365/500] Validation Loss: 116.2544
+2024-11-27 00:12:56,796 [MainThread  ] [INFO ]  Epoch [366/500] Validation Loss: 115.6508
+2024-11-27 00:13:28,224 [MainThread  ] [INFO ]  Epoch [367/500] Validation Loss: 115.2568
+2024-11-27 00:13:58,723 [MainThread  ] [INFO ]  Epoch [368/500] Validation Loss: 116.8651
+2024-11-27 00:14:28,938 [MainThread  ] [INFO ]  Epoch [369/500] Validation Loss: 115.6387
+2024-11-27 00:14:59,328 [MainThread  ] [INFO ]  Epoch [370/500] Validation Loss: 116.4993
+2024-11-27 00:15:29,335 [MainThread  ] [INFO ]  Epoch [371/500] Validation Loss: 116.4234
+2024-11-27 00:15:59,575 [MainThread  ] [INFO ]  Epoch [372/500] Validation Loss: 116.6629
+2024-11-27 00:16:29,784 [MainThread  ] [INFO ]  Epoch [373/500] Validation Loss: 116.6749
+2024-11-27 00:17:00,781 [MainThread  ] [INFO ]  Epoch [374/500] Validation Loss: 117.8874
+2024-11-27 00:17:31,710 [MainThread  ] [INFO ]  Epoch [375/500] Validation Loss: 116.4601
+2024-11-27 00:18:02,556 [MainThread  ] [INFO ]  Epoch [376/500] Validation Loss: 117.2180
+2024-11-27 00:18:33,136 [MainThread  ] [INFO ]  Epoch [377/500] Validation Loss: 116.1321
+2024-11-27 00:19:03,301 [MainThread  ] [INFO ]  Epoch [378/500] Validation Loss: 115.7792
+2024-11-27 00:19:34,756 [MainThread  ] [INFO ]  Epoch [379/500] Validation Loss: 116.0108
+2024-11-27 00:20:05,217 [MainThread  ] [INFO ]  Epoch [380/500] Validation Loss: 116.4347
+2024-11-27 00:20:35,671 [MainThread  ] [INFO ]  Epoch [381/500] Validation Loss: 116.8240
+2024-11-27 00:21:01,094 [MainThread  ] [INFO ]  Validation performance at epoch 381 -> 0.40811102635167
+2024-11-27 00:21:32,193 [MainThread  ] [INFO ]  Epoch [382/500] Validation Loss: 116.8782
+2024-11-27 00:22:02,403 [MainThread  ] [INFO ]  Epoch [383/500] Validation Loss: 116.8762
+2024-11-27 00:22:33,498 [MainThread  ] [INFO ]  Epoch [384/500] Validation Loss: 114.5594
+2024-11-27 00:23:03,608 [MainThread  ] [INFO ]  Epoch [385/500] Validation Loss: 116.7450
+2024-11-27 00:23:34,261 [MainThread  ] [INFO ]  Epoch [386/500] Validation Loss: 116.7444
+2024-11-27 00:24:04,754 [MainThread  ] [INFO ]  Epoch [387/500] Validation Loss: 118.4586
+2024-11-27 00:24:35,249 [MainThread  ] [INFO ]  Epoch [388/500] Validation Loss: 117.2243
+2024-11-27 00:25:05,341 [MainThread  ] [INFO ]  Epoch [389/500] Validation Loss: 116.2659
+2024-11-27 00:25:35,708 [MainThread  ] [INFO ]  Epoch [390/500] Validation Loss: 117.3207
+2024-11-27 00:26:05,828 [MainThread  ] [INFO ]  Epoch [391/500] Validation Loss: 118.3445
+2024-11-27 00:26:36,318 [MainThread  ] [INFO ]  Epoch [392/500] Validation Loss: 117.1739
+2024-11-27 00:27:06,553 [MainThread  ] [INFO ]  Epoch [393/500] Validation Loss: 116.6751
+2024-11-27 00:27:36,706 [MainThread  ] [INFO ]  Epoch [394/500] Validation Loss: 116.0879
+2024-11-27 00:28:06,739 [MainThread  ] [INFO ]  Epoch [395/500] Validation Loss: 118.4432
+2024-11-27 00:28:37,308 [MainThread  ] [INFO ]  Epoch [396/500] Validation Loss: 116.4179
+2024-11-27 00:29:07,997 [MainThread  ] [INFO ]  Epoch [397/500] Validation Loss: 117.1525
+2024-11-27 00:29:38,346 [MainThread  ] [INFO ]  Epoch [398/500] Validation Loss: 117.1695
+2024-11-27 00:30:09,158 [MainThread  ] [INFO ]  Epoch [399/500] Validation Loss: 116.8066
+2024-11-27 00:30:39,462 [MainThread  ] [INFO ]  Epoch [400/500] Validation Loss: 115.9908
+2024-11-27 00:31:09,332 [MainThread  ] [INFO ]  Epoch [401/500] Validation Loss: 117.5184
+2024-11-27 00:31:34,806 [MainThread  ] [INFO ]  Validation performance at epoch 401 -> 0.41804894802062603
+2024-11-27 00:32:04,694 [MainThread  ] [INFO ]  Epoch [402/500] Validation Loss: 118.0384
+2024-11-27 00:32:35,108 [MainThread  ] [INFO ]  Epoch [403/500] Validation Loss: 117.3591
+2024-11-27 00:33:04,842 [MainThread  ] [INFO ]  Epoch [404/500] Validation Loss: 118.3809
+2024-11-27 00:33:34,920 [MainThread  ] [INFO ]  Epoch [405/500] Validation Loss: 117.5777
+2024-11-27 00:34:05,667 [MainThread  ] [INFO ]  Epoch [406/500] Validation Loss: 117.3484
+2024-11-27 00:34:35,738 [MainThread  ] [INFO ]  Epoch [407/500] Validation Loss: 118.2618
+2024-11-27 00:35:06,084 [MainThread  ] [INFO ]  Epoch [408/500] Validation Loss: 117.6584
+2024-11-27 00:35:37,311 [MainThread  ] [INFO ]  Epoch [409/500] Validation Loss: 118.2031
+2024-11-27 00:36:08,214 [MainThread  ] [INFO ]  Epoch [410/500] Validation Loss: 117.9169
+2024-11-27 00:36:39,917 [MainThread  ] [INFO ]  Epoch [411/500] Validation Loss: 117.0823
+2024-11-27 00:37:10,761 [MainThread  ] [INFO ]  Epoch [412/500] Validation Loss: 117.5711
+2024-11-27 00:37:41,267 [MainThread  ] [INFO ]  Epoch [413/500] Validation Loss: 117.9373
+2024-11-27 00:38:11,591 [MainThread  ] [INFO ]  Epoch [414/500] Validation Loss: 117.4506
+2024-11-27 00:38:42,042 [MainThread  ] [INFO ]  Epoch [415/500] Validation Loss: 119.1152
+2024-11-27 00:39:13,237 [MainThread  ] [INFO ]  Epoch [416/500] Validation Loss: 117.2595
+2024-11-27 00:39:44,237 [MainThread  ] [INFO ]  Epoch [417/500] Validation Loss: 116.6861
+2024-11-27 00:40:14,410 [MainThread  ] [INFO ]  Epoch [418/500] Validation Loss: 116.8183
+2024-11-27 00:40:44,982 [MainThread  ] [INFO ]  Epoch [419/500] Validation Loss: 117.1166
+2024-11-27 00:41:15,457 [MainThread  ] [INFO ]  Epoch [420/500] Validation Loss: 119.3975
+2024-11-27 00:41:45,594 [MainThread  ] [INFO ]  Epoch [421/500] Validation Loss: 117.7846
+2024-11-27 00:42:11,225 [MainThread  ] [INFO ]  Validation performance at epoch 421 -> 0.4000069471122802
+2024-11-27 00:42:42,048 [MainThread  ] [INFO ]  Epoch [422/500] Validation Loss: 117.7007
+2024-11-27 00:43:12,122 [MainThread  ] [INFO ]  Epoch [423/500] Validation Loss: 116.7503
+2024-11-27 00:43:42,349 [MainThread  ] [INFO ]  Epoch [424/500] Validation Loss: 116.8285
+2024-11-27 00:44:12,578 [MainThread  ] [INFO ]  Epoch [425/500] Validation Loss: 117.2929
+2024-11-27 00:44:42,817 [MainThread  ] [INFO ]  Epoch [426/500] Validation Loss: 116.6671
+2024-11-27 00:45:14,234 [MainThread  ] [INFO ]  Epoch [427/500] Validation Loss: 116.7485
+2024-11-27 00:45:44,598 [MainThread  ] [INFO ]  Epoch [428/500] Validation Loss: 116.5650
+2024-11-27 00:46:14,818 [MainThread  ] [INFO ]  Epoch [429/500] Validation Loss: 116.9685
+2024-11-27 00:46:44,960 [MainThread  ] [INFO ]  Epoch [430/500] Validation Loss: 117.7790
+2024-11-27 00:47:16,156 [MainThread  ] [INFO ]  Epoch [431/500] Validation Loss: 117.6653
+2024-11-27 00:47:46,527 [MainThread  ] [INFO ]  Epoch [432/500] Validation Loss: 117.8822
+2024-11-27 00:48:17,378 [MainThread  ] [INFO ]  Epoch [433/500] Validation Loss: 118.2011
+2024-11-27 00:48:48,141 [MainThread  ] [INFO ]  Epoch [434/500] Validation Loss: 118.0041
+2024-11-27 00:49:18,821 [MainThread  ] [INFO ]  Epoch [435/500] Validation Loss: 118.2951
+2024-11-27 00:49:49,299 [MainThread  ] [INFO ]  Epoch [436/500] Validation Loss: 117.6900
+2024-11-27 00:50:19,652 [MainThread  ] [INFO ]  Epoch [437/500] Validation Loss: 117.0567
+2024-11-27 00:50:50,124 [MainThread  ] [INFO ]  Epoch [438/500] Validation Loss: 117.5088
+2024-11-27 00:51:20,282 [MainThread  ] [INFO ]  Epoch [439/500] Validation Loss: 117.1774
+2024-11-27 00:51:20,283 [MainThread  ] [INFO ]  Plateau Reached!
+2024-11-27 00:51:50,568 [MainThread  ] [INFO ]  Epoch [440/500] Validation Loss: 116.5929
+2024-11-27 00:52:20,384 [MainThread  ] [INFO ]  Epoch [441/500] Validation Loss: 118.5254
+2024-11-27 00:52:45,863 [MainThread  ] [INFO ]  Validation performance at epoch 441 -> 0.40438561571902726
+2024-11-27 00:53:16,804 [MainThread  ] [INFO ]  Epoch [442/500] Validation Loss: 118.0044
+2024-11-27 00:53:47,443 [MainThread  ] [INFO ]  Epoch [443/500] Validation Loss: 117.6950
+2024-11-27 00:54:17,825 [MainThread  ] [INFO ]  Epoch [444/500] Validation Loss: 118.7922
+2024-11-27 00:54:48,099 [MainThread  ] [INFO ]  Epoch [445/500] Validation Loss: 118.1813
+2024-11-27 00:55:18,815 [MainThread  ] [INFO ]  Epoch [446/500] Validation Loss: 117.6774
+2024-11-27 00:55:49,264 [MainThread  ] [INFO ]  Epoch [447/500] Validation Loss: 117.8411
+2024-11-27 00:56:19,614 [MainThread  ] [INFO ]  Epoch [448/500] Validation Loss: 118.1445
+2024-11-27 00:56:50,473 [MainThread  ] [INFO ]  Epoch [449/500] Validation Loss: 117.9281
+2024-11-27 00:57:20,734 [MainThread  ] [INFO ]  Epoch [450/500] Validation Loss: 118.4019
+2024-11-27 00:57:51,004 [MainThread  ] [INFO ]  Epoch [451/500] Validation Loss: 117.5515
+2024-11-27 00:58:21,162 [MainThread  ] [INFO ]  Epoch [452/500] Validation Loss: 117.3837
+2024-11-27 00:58:51,595 [MainThread  ] [INFO ]  Epoch [453/500] Validation Loss: 117.0316
+2024-11-27 00:59:21,552 [MainThread  ] [INFO ]  Epoch [454/500] Validation Loss: 118.9009
+2024-11-27 00:59:51,561 [MainThread  ] [INFO ]  Epoch [455/500] Validation Loss: 116.8053
+2024-11-27 01:00:22,180 [MainThread  ] [INFO ]  Epoch [456/500] Validation Loss: 117.4376
+2024-11-27 01:00:52,284 [MainThread  ] [INFO ]  Epoch [457/500] Validation Loss: 118.6460
+2024-11-27 01:01:22,780 [MainThread  ] [INFO ]  Epoch [458/500] Validation Loss: 117.1240
+2024-11-27 01:01:53,391 [MainThread  ] [INFO ]  Epoch [459/500] Validation Loss: 117.9707
+2024-11-27 01:02:24,088 [MainThread  ] [INFO ]  Epoch [460/500] Validation Loss: 117.1147
+2024-11-27 01:02:55,576 [MainThread  ] [INFO ]  Epoch [461/500] Validation Loss: 118.1490
+2024-11-27 01:03:21,275 [MainThread  ] [INFO ]  Validation performance at epoch 461 -> 0.3992542773948022
+2024-11-27 01:03:51,954 [MainThread  ] [INFO ]  Epoch [462/500] Validation Loss: 117.9041
+2024-11-27 01:04:23,043 [MainThread  ] [INFO ]  Epoch [463/500] Validation Loss: 117.2200
+2024-11-27 01:04:53,540 [MainThread  ] [INFO ]  Epoch [464/500] Validation Loss: 118.9645
+2024-11-27 01:05:24,031 [MainThread  ] [INFO ]  Epoch [465/500] Validation Loss: 118.4191
+2024-11-27 01:05:54,629 [MainThread  ] [INFO ]  Epoch [466/500] Validation Loss: 118.9721
+2024-11-27 01:06:24,965 [MainThread  ] [INFO ]  Epoch [467/500] Validation Loss: 118.8089
+2024-11-27 01:06:55,261 [MainThread  ] [INFO ]  Epoch [468/500] Validation Loss: 118.8162
+2024-11-27 01:07:25,692 [MainThread  ] [INFO ]  Epoch [469/500] Validation Loss: 118.1297
+2024-11-27 01:07:55,982 [MainThread  ] [INFO ]  Epoch [470/500] Validation Loss: 117.7658
+2024-11-27 01:08:26,921 [MainThread  ] [INFO ]  Epoch [471/500] Validation Loss: 118.3291
+2024-11-27 01:08:57,359 [MainThread  ] [INFO ]  Epoch [472/500] Validation Loss: 118.5303
+2024-11-27 01:09:27,701 [MainThread  ] [INFO ]  Epoch [473/500] Validation Loss: 118.4834
+2024-11-27 01:09:57,738 [MainThread  ] [INFO ]  Epoch [474/500] Validation Loss: 117.7731
+2024-11-27 01:10:28,252 [MainThread  ] [INFO ]  Epoch [475/500] Validation Loss: 116.8408
+2024-11-27 01:10:58,683 [MainThread  ] [INFO ]  Epoch [476/500] Validation Loss: 118.4508
+2024-11-27 01:11:28,979 [MainThread  ] [INFO ]  Epoch [477/500] Validation Loss: 118.0180
+2024-11-27 01:11:59,918 [MainThread  ] [INFO ]  Epoch [478/500] Validation Loss: 118.7244
+2024-11-27 01:12:30,608 [MainThread  ] [INFO ]  Epoch [479/500] Validation Loss: 118.0696
+2024-11-27 01:13:01,036 [MainThread  ] [INFO ]  Epoch [480/500] Validation Loss: 118.5885
+2024-11-27 01:13:31,532 [MainThread  ] [INFO ]  Epoch [481/500] Validation Loss: 117.6694
+2024-11-27 01:13:56,855 [MainThread  ] [INFO ]  Validation performance at epoch 481 -> 0.4004367863241625
+2024-11-27 01:14:27,128 [MainThread  ] [INFO ]  Epoch [482/500] Validation Loss: 118.4154
+2024-11-27 01:14:57,185 [MainThread  ] [INFO ]  Epoch [483/500] Validation Loss: 118.2001
+2024-11-27 01:15:28,424 [MainThread  ] [INFO ]  Epoch [484/500] Validation Loss: 119.6954
+2024-11-27 01:15:58,483 [MainThread  ] [INFO ]  Epoch [485/500] Validation Loss: 118.2042
+2024-11-27 01:16:29,485 [MainThread  ] [INFO ]  Epoch [486/500] Validation Loss: 119.2317
+2024-11-27 01:16:59,931 [MainThread  ] [INFO ]  Epoch [487/500] Validation Loss: 119.4832
+2024-11-27 01:17:30,518 [MainThread  ] [INFO ]  Epoch [488/500] Validation Loss: 119.2543
+2024-11-27 01:18:01,142 [MainThread  ] [INFO ]  Epoch [489/500] Validation Loss: 119.0811
+2024-11-27 01:18:32,088 [MainThread  ] [INFO ]  Epoch [490/500] Validation Loss: 118.4116
+2024-11-27 01:19:02,537 [MainThread  ] [INFO ]  Epoch [491/500] Validation Loss: 118.8515
+2024-11-27 01:19:33,376 [MainThread  ] [INFO ]  Epoch [492/500] Validation Loss: 118.2102
+2024-11-27 01:20:03,715 [MainThread  ] [INFO ]  Epoch [493/500] Validation Loss: 118.3007
+2024-11-27 01:20:34,327 [MainThread  ] [INFO ]  Epoch [494/500] Validation Loss: 118.1598
+2024-11-27 01:21:05,112 [MainThread  ] [INFO ]  Epoch [495/500] Validation Loss: 116.5684
+2024-11-27 01:21:35,522 [MainThread  ] [INFO ]  Epoch [496/500] Validation Loss: 119.8209
+2024-11-27 01:22:06,075 [MainThread  ] [INFO ]  Epoch [497/500] Validation Loss: 118.8223
+2024-11-27 01:22:36,417 [MainThread  ] [INFO ]  Epoch [498/500] Validation Loss: 119.4784
+2024-11-27 01:23:06,753 [MainThread  ] [INFO ]  Epoch [499/500] Validation Loss: 118.6705
+2024-11-27 01:23:37,182 [MainThread  ] [INFO ]  Epoch [500/500] Validation Loss: 118.0799
+2024-11-27 01:24:04,922 [MainThread  ] [INFO ]  Best performance at end of training 
+2024-11-27 01:24:04,923 [MainThread  ] [INFO ]  Average mAP: 0.4300523902459202
+2024-11-27 01:24:04,923 [MainThread  ] [INFO ]  Average mAP visible: 0.4496318727880961
+2024-11-27 01:24:04,923 [MainThread  ] [INFO ]  Average mAP unshown: 0.30381282751500843
+2024-11-27 01:24:04,923 [MainThread  ] [INFO ]  Average mAP per class: [0.3342041757131067, 0.3851971397227611, 0.737943944024698, 0.557020448109699, 0.3057980935580764, 0.2811879676378482, 0.29501947919263366, 0.5404708050701186, 0.6618562861591676, 0.6068135029573496, 0.5411062660583236, 0.40404700015070405, 0.4273899222516033, 0.7207161324795042, 0.5046200304738231, 0.007499440621225985, 0.0]
+2024-11-27 01:24:04,923 [MainThread  ] [INFO ]  Average mAP visible per class: [0.3607787043615921, 0.2890773747179306, 0.7430960295356885, 0.6452274219259119, 0.32557221088832833, 0.2818080094427897, 0.2958864299712266, 0.5945881334046651, 0.6630945002709523, 0.6409052204533096, 0.5427885061535008, 0.3838641976241571, 0.4868166539908074, 0.7327495837346257, 0.5347025563176615, 0.12278630460448642, 0.0]
+2024-11-27 01:24:04,923 [MainThread  ] [INFO ]  Average mAP unshown per class: [0.0, 0.41534735841018666, 0.0, 0.17952376767319167, 0.10860179017293643, 0.0, 0.0017297712857966556, 0.486585456491837, 0.6159507121994701, 0.5234269955201563, 0.43100375098995186, 0.45122767128884245, 0.0836627140974967, 0.5440731049435312, 0.10843366462171253, 0.0, 0.0]
+2024-11-27 01:24:05,085 [MainThread  ] [INFO ]  Total Execution Time is 16403.196258306503 seconds

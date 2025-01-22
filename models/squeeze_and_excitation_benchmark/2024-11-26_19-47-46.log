@@ -1,0 +1,99 @@
+2024-11-26 19:47:46,779 [MainThread  ] [INFO ]  Starting main function
+2024-11-26 19:47:46,780 [MainThread  ] [INFO ]  Parameters:
+2024-11-26 19:47:46,780 [MainThread  ] [INFO ]   SoccerNet_path : /content/drive/MyDrive/soccer_net/CALF/src/spotting_ball_2023/
+2024-11-26 19:47:46,781 [MainThread  ] [INFO ]         features : ResNET_TF2_PCA512.npy
+2024-11-26 19:47:46,781 [MainThread  ] [INFO ]       max_epochs : 500
+2024-11-26 19:47:46,781 [MainThread  ] [INFO ]     load_weights : None
+2024-11-26 19:47:46,781 [MainThread  ] [INFO ]       model_name : seb_red4_res_grpcnv_do_bn_wd_full
+2024-11-26 19:47:46,782 [MainThread  ] [INFO ]        test_only : False
+2024-11-26 19:47:46,782 [MainThread  ] [INFO ]        challenge : False
+2024-11-26 19:47:46,782 [MainThread  ] [INFO ]         K_params : None
+2024-11-26 19:47:46,782 [MainThread  ] [INFO ]     num_features : 512
+2024-11-26 19:47:46,782 [MainThread  ] [INFO ]  chunks_per_epoch : 18000
+2024-11-26 19:47:46,782 [MainThread  ] [INFO ]  evaluation_frequency : 20
+2024-11-26 19:47:46,782 [MainThread  ] [INFO ]      dim_capsule : 16
+2024-11-26 19:47:46,782 [MainThread  ] [INFO ]        framerate : 2
+2024-11-26 19:47:46,782 [MainThread  ] [INFO ]       chunk_size : 120
+2024-11-26 19:47:46,782 [MainThread  ] [INFO ]  receptive_field : 40
+2024-11-26 19:47:46,782 [MainThread  ] [INFO ]     lambda_coord : 5.0
+2024-11-26 19:47:46,783 [MainThread  ] [INFO ]     lambda_noobj : 0.5
+2024-11-26 19:47:46,783 [MainThread  ] [INFO ]  loss_weight_segmentation : 0.000367
+2024-11-26 19:47:46,783 [MainThread  ] [INFO ]  loss_weight_detection : 1.0
+2024-11-26 19:47:46,783 [MainThread  ] [INFO ]       batch_size : 32
+2024-11-26 19:47:46,783 [MainThread  ] [INFO ]               LR : 0.001
+2024-11-26 19:47:46,783 [MainThread  ] [INFO ]         patience : 25
+2024-11-26 19:47:46,783 [MainThread  ] [INFO ]              GPU : -1
+2024-11-26 19:47:46,783 [MainThread  ] [INFO ]   max_num_worker : 4
+2024-11-26 19:47:46,783 [MainThread  ] [INFO ]         loglevel : INFO
+2024-11-26 19:47:46,783 [MainThread  ] [INFO ]            model : seb
+2024-11-26 19:47:46,784 [MainThread  ] [INFO ]           subset : None
+2024-11-26 19:47:46,784 [MainThread  ] [INFO ]        num_heads : 4
+2024-11-26 19:47:46,784 [MainThread  ] [INFO ]  transformer_layers : 3
+2024-11-26 19:47:46,784 [MainThread  ] [INFO ]          d_model : 64
+2024-11-26 19:47:46,797 [MainThread  ] [INFO ]  Checking/Download features and labels locally
+2024-11-26 19:47:47,792 [MainThread  ] [INFO ]  Pre-compute clips
+2024-11-26 20:01:44,845 [MainThread  ] [INFO ]  Checking/Download features and labels locally
+2024-11-26 20:01:45,171 [MainThread  ] [INFO ]  Pre-compute clips
+2024-11-26 20:03:08,433 [MainThread  ] [INFO ]  Checking/Download features and labels locally
+2024-11-26 20:03:08,765 [MainThread  ] [INFO ]  Checking/Download features and labels locally
+2024-11-26 20:03:09,108 [MainThread  ] [INFO ]  ContextAwareModelSeb(
+  (conv_1): Conv2d(1, 128, kernel_size=(1, 512), stride=(1, 1))
+  (conv_2): Conv2d(128, 32, kernel_size=(1, 1), stride=(1, 1))
+  (pad_p_1): ZeroPad2d((0, 0, 5, 6))
+  (pad_p_2): ZeroPad2d((0, 0, 13, 13))
+  (pad_p_3): ZeroPad2d((0, 0, 19, 20))
+  (pad_p_4): ZeroPad2d((0, 0, 39, 40))
+  (conv_p_1): Conv2d(32, 8, kernel_size=(12, 1), stride=(1, 1), groups=8)
+  (conv_p_2): Conv2d(32, 16, kernel_size=(27, 1), stride=(1, 1), groups=16)
+  (conv_p_3): Conv2d(32, 32, kernel_size=(40, 1), stride=(1, 1), groups=32)
+  (conv_p_4): Conv2d(32, 64, kernel_size=(80, 1), stride=(1, 1), groups=32)
+  (se_p_1): SEBlock(
+    (global_avg_pool): AdaptiveAvgPool2d(output_size=1)
+    (fc1): Linear(in_features=8, out_features=2, bias=True)
+    (fc2): Linear(in_features=2, out_features=8, bias=True)
+    (sigmoid): Sigmoid()
+  )
+  (se_p_2): SEBlock(
+    (global_avg_pool): AdaptiveAvgPool2d(output_size=1)
+    (fc1): Linear(in_features=16, out_features=4, bias=True)
+    (fc2): Linear(in_features=4, out_features=16, bias=True)
+    (sigmoid): Sigmoid()
+  )
+  (se_p_3): SEBlock(
+    (global_avg_pool): AdaptiveAvgPool2d(output_size=1)
+    (fc1): Linear(in_features=32, out_features=8, bias=True)
+    (fc2): Linear(in_features=8, out_features=32, bias=True)
+    (sigmoid): Sigmoid()
+  )
+  (se_p_4): SEBlock(
+    (global_avg_pool): AdaptiveAvgPool2d(output_size=1)
+    (fc1): Linear(in_features=64, out_features=16, bias=True)
+    (fc2): Linear(in_features=16, out_features=64, bias=True)
+    (sigmoid): Sigmoid()
+  )
+  (dropout_seg): Dropout(p=0.3, inplace=False)
+  (dropout_spot): Dropout(p=0.3, inplace=False)
+  (conv_seg_bn): BatchNorm2d(272, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (pad_seg): ZeroPad2d((0, 0, 1, 1))
+  (conv_seg): Conv2d(152, 272, kernel_size=(3, 1), stride=(1, 1))
+  (batch_seg): BatchNorm2d(240, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+  (max_pool_spot): MaxPool2d(kernel_size=(3, 1), stride=(2, 1), padding=0, dilation=1, ceil_mode=False)
+  (pad_spot_1): ZeroPad2d((0, 0, 1, 1))
+  (conv_spot_1): Conv2d(289, 32, kernel_size=(3, 1), stride=(1, 1))
+  (max_pool_spot_1): MaxPool2d(kernel_size=(3, 1), stride=(2, 1), padding=0, dilation=1, ceil_mode=False)
+  (pad_spot_2): ZeroPad2d((0, 0, 1, 1))
+  (conv_spot_2): Conv2d(32, 16, kernel_size=(3, 1), stride=(1, 1))
+  (max_pool_spot_2): MaxPool2d(kernel_size=(3, 1), stride=(2, 1), padding=0, dilation=1, ceil_mode=False)
+  (conv_conf): Conv2d(464, 30, kernel_size=(1, 1), stride=(1, 1))
+  (conv_class): Conv2d(464, 255, kernel_size=(1, 1), stride=(1, 1))
+  (softmax): Softmax(dim=-1)
+)
+2024-11-26 20:03:09,109 [MainThread  ] [INFO ]  Total number of parameters: 367611
+2024-11-26 20:03:09,957 [MainThread  ] [INFO ]  Start training
+2024-11-26 20:03:40,568 [MainThread  ] [INFO ]  Epoch [1/500] Validation Loss: 141.4764
+2024-11-26 20:04:10,151 [MainThread  ] [INFO ]  Epoch [2/500] Validation Loss: 137.6756
+2024-11-26 20:04:39,919 [MainThread  ] [INFO ]  Epoch [3/500] Validation Loss: nan
+2024-11-26 20:05:10,067 [MainThread  ] [INFO ]  Epoch [4/500] Validation Loss: 131.7686
+2024-11-26 20:05:39,958 [MainThread  ] [INFO ]  Epoch [5/500] Validation Loss: 130.4865
+2024-11-26 20:06:11,081 [MainThread  ] [INFO ]  Epoch [6/500] Validation Loss: nan
+2024-11-26 20:06:41,682 [MainThread  ] [INFO ]  Epoch [7/500] Validation Loss: nan
