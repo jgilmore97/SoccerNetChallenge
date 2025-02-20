@@ -1,9 +1,8 @@
 # SoccerNet-v2 - Action Spotting
 
-This repository contains the code and paper submitted my group for the final project in Georgia Tech's Graduate Deep Learning class. For our project we tackled the SoccerNet action spotting challenge in which submissions must localize when and which soccer action occurs, in a dataset among 17 classes. Each action is annotated with a single timestamp, making those annotations quite scattered in long videos containing full soccer broadcasts.
+This repository contains the code and paper submitted by my group for the final project in Georgia Tech's Graduate Deep Learning class. For our project, we tackled the SoccerNet action spotting challenge in which submissions must localize when and which soccer action occurs, in a dataset among 17 classes, in complete game recordings. Each action is annotated with a single timestamp, making those annotations quite scattered in long videos containing full soccer broadcasts.
 
 We utilized the work of Cioppa et al for the paper "A Context-Aware Loss Function for Action Spotting in Soccer Videos" as a starting point for our work and we set out to beat the benchmark of their approach. Notable changes are made to the code and logic for the model, training loop, and loss functions. My primary contribution to the effort came from designing and coding our model architecture and conducting experiments measuring performance. A number of approaches were attempted but our best results which successfully beat our targeted baseline came from incorporating multihead attention after initial feature extracting CNN layers in conjunction with other functional changes like additional regularization and adjustments to spotting logic. Expanded elaboration on this can be found in our paper which is stored in this repo.
-
 
 ```bibtex
 @InProceedings{Deliege2020SoccerNetv2,
